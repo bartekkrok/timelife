@@ -5,10 +5,10 @@ With TimeLife, you can build a chronological timeline of your life, adding past 
 # ✅ Expo Project Setup Checklist
 
 - [x] Initialize the Project
-- [ ] TypeScript Configuration
+- [x] TypeScript Configuration
 - [x] ESLint & Prettier
-- [ ] Husky & lint-staged
+- [x] Husky & lint-staged
 - [ ] GitHub Actions (CI/CD)
-- [ ] Alias Configuration
+- [x] Alias Configuration
 - [ ] Environment Variables (.env)
 
