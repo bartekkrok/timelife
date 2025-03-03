@@ -6,7 +6,7 @@ With TimeLife, you can build a chronological timeline of your life, adding past 
 
 - [x] Initialize the Project
 - [ ] TypeScript Configuration
-- [ ] ESLint & Prettier
+- [x] ESLint & Prettier
 - [ ] Husky & lint-staged
 - [ ] GitHub Actions (CI/CD)
 - [ ] Alias Configuration
