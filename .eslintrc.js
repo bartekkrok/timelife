@@ -14,5 +14,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['warn'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-require-imports': 'off',
+    'react/no-unescaped-entities': 'off',
   },
 };
