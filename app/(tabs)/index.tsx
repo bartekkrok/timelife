@@ -2,9 +2,9 @@ import { Image, StyleSheet, Platform } from 'react-native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { memoryList } from '@/data/test-data';
+import MemoryItem from '@/components/MemoryItem';
 
 export default function HomeScreen() {
   return (
@@ -18,11 +18,8 @@ export default function HomeScreen() {
           />
         }
       >
-        {memoryList.map((memory) => (
-          <ThemedView key={memory.id} style={styles.stepContainer}>
-            <ThemedText type="subtitle">{memory.title}</ThemedText>
-            <ThemedText>{memory.date}</ThemedText>
-          </ThemedView>
+        {memoryList.map((memoryItem) => (
+          <MemoryItem key={memoryItem.id} {...memoryItem} />
         ))}
         <ThemedText type="defaultSemiBold">
           {Platform.select({

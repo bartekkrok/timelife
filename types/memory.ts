@@ -1,4 +1,4 @@
-type MemoryDetails = {
+export type MemoryDetails = {
   id: string; // Unique identifier for the memory
   title: string; // Memory title
   description?: string; // Optional description
@@ -21,7 +21,7 @@ type MemoryDetails = {
   sharedWith?: string[]; // List of user IDs with whom the memory is shared
 };
 
-type MemoryShortDetails = {
+export type MemoryShortDetails = {
   id: string; // Unique identifier for the memory
   title: string; // Memory title
   date: string; // Memory date (ISO 8601)
