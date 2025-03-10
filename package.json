@@ -3,14 +3,14 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "test": "jest --watchAll",
-    "lint": "expo lint",
-    "prepare": "husky"
+    "start": "bun expo start",
+    "reset-project": "bun node ./scripts/reset-project.js",
+    "android": "bun expo start --android",
+    "ios": "bun expo start --ios",
+    "web": "bun expo start --web",
+    "test": "bun jest --watchAll",
+    "lint": "bun expo lint",
+    "prepare": "bun husky"
   },
   "jest": {
     "preset": "jest-expo"
