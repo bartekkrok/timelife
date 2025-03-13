@@ -8,6 +8,7 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { signInWithEmail, signUpWithEmail } from '@/services/authService';
 
 export default function AuthScreen() {
@@ -33,14 +34,14 @@ export default function AuthScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={['#57007F', '#800F2F']} style={styles.container}>
       <StatusBar barStyle="light-content" />
       <Text style={styles.title}>Zaloguj się</Text>
 
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#888"
+        placeholderTextColor="#DDD"
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
@@ -50,7 +51,7 @@ export default function AuthScreen() {
       <TextInput
         style={styles.input}
         placeholder="Hasło"
-        placeholderTextColor="#888"
+        placeholderTextColor="#DDD"
         secureTextEntry
         autoCapitalize="none"
         autoCorrect={false}
@@ -68,70 +69,73 @@ export default function AuthScreen() {
       <TouchableOpacity style={styles.forgotPassword} onPress={() => alert('Resetowanie hasła')}>
         <Text style={styles.forgotPasswordText}>Nie pamiętasz hasła?</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#FFFFFF',
     marginBottom: 30,
   },
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#1E1E1E',
-    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderRadius: 16,
     paddingHorizontal: 15,
     fontSize: 16,
-    color: '#ffffff',
+    color: '#FFFFFF',
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#292929',
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
   button: {
     width: '100%',
     height: 50,
-    backgroundColor: '#003391',
-    borderRadius: 12,
+    backgroundColor: '#A18AFF',
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
+    shadowColor: '#A18AFF',
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
   },
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#FFFFFF',
   },
   secondaryButton: {
     width: '100%',
     height: 50,
-    borderRadius: 12,
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
     borderWidth: 1,
-    borderColor: '#0057FF',
+    borderColor: '#A18AFF',
   },
   secondaryButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0057FF',
+    color: '#A18AFF',
   },
   forgotPassword: {
     marginTop: 15,
   },
   forgotPasswordText: {
-    color: '#8AB4F8',
+    color: '#FFD1DC',
     fontSize: 16,
   },
 });

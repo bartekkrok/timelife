@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+    tintColor: '#A18AFF',
   },
 });
