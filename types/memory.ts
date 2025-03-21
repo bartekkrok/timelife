@@ -25,6 +25,6 @@ export type MemoryShortDetails = {
   id: string; // Unique identifier for the memory
   title: string; // Memory title
   date: string; // Memory date (ISO 8601)
-  thumbnailUrl?: string; // Optional thumbnail preview for images and videos
+  thumbnailUrl: string | null;
   isPrivate: boolean; // Whether the memory is private
 };

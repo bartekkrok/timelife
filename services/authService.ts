@@ -13,5 +13,9 @@ export async function signUpWithEmail(email: string, password: string) {
 }
 
 export async function signOut() {
-  await supabase.auth.signOut();
+  let { error } = await supabase.auth.signOut();
+
+  if (error) {
+    throw error;
+  }
 }
