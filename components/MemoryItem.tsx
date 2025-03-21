@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   timelineItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 20,
   },
   timelineLine: {
     width: 3,

@@ -1,4 +1,6 @@
-export const memoryList: MemoryShortDetails[] = [
+import { MemoryShortDetails } from '@/types/memory';
+
+export const memoryList: readonly MemoryShortDetails[] = [
   {
     id: '141347a2-be4f-498e-ba22-c7a1731eae9d',
     title: 'Camping Adventure',

@@ -1,54 +1,47 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
+import { Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlashList } from '@shopify/flash-list';
+
 import { memoryList } from '@/data/test-data';
 import MemoryItem from '@/components/MemoryItem';
+import FilterBar from '@/components/FilterBar';
+import { ThemedText } from '@/components/ThemedText';
+import { MemoryShortDetails } from '@/types/memory';
 
-export default function HomeScreen() {
+export default function TimelineScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ParallaxScrollView
-        headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-        headerImage={
-          <Image
-            source={require('@/assets/images/partial-react-logo.png')}
-            style={styles.reactLogo}
-          />
+      <View>
+        <ThemedText type="header">TimeLine like on github</ThemedText>
+      </View>
+      <FilterBar />
+      <FlashList<MemoryShortDetails>
+        data={memoryList}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <MemoryItem {...item} />}
+        estimatedItemSize={100}
+        ListFooterComponent={
+          <ThemedText type="defaultSemiBold" style={styles.debugText}>
+            {Platform.select({
+              ios: 'cmd + d',
+              android: 'cmd + m',
+              web: 'F12',
+            })}
+          </ThemedText>
         }
-      >
-        {memoryList.map((memoryItem) => (
-          <MemoryItem key={memoryItem.id} {...memoryItem} />
-        ))}
-        <ThemedText type="defaultSemiBold">
-          {Platform.select({
-            ios: 'cmd + d',
-            android: 'cmd + m',
-            web: 'F12',
-          })}
-        </ThemedText>
-      </ParallaxScrollView>
+        contentContainerStyle={styles.listContent}
+      />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  listContent: {
+    paddingHorizontal: 16,
+    paddingBottom: 32,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    tintColor: '#A18AFF',
+  debugText: {
+    marginTop: 16,
+    marginBottom: 32,
   },
 });

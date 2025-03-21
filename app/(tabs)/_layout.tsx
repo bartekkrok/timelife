@@ -19,14 +19,14 @@ export default function TabLayout() {
         tabBarButton: HapticTab,
         tabBarStyle: styles.tabBarContainer,
         tabBarBackground: () => (
-          <BlurView intensity={20} tint={colorScheme ?? 'light'} style={styles.tabBar} />
+          <BlurView intensity={40} tint={colorScheme ?? 'light'} style={styles.tabBar} />
         ),
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'TimeLine',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
@@ -34,7 +34,7 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="settings.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="gearshape.fill" color={color} />,
         }}
       />
     </Tabs>
