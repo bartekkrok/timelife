@@ -7,13 +7,12 @@ import MemoryItem from '@/components/MemoryItem';
 import FilterBar from '@/components/FilterBar';
 import { ThemedText } from '@/components/ThemedText';
 import { MemoryShortDetails } from '@/types/memory';
+import LifeGrid from '@/components/LifeGrid';
 
 export default function TimelineScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View>
-        <ThemedText type="header">TimeLine like on github</ThemedText>
-      </View>
+      <LifeGrid events={memoryList} />
       <FilterBar />
       <FlashList<MemoryShortDetails>
         data={memoryList}
