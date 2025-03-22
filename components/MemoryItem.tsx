@@ -1,20 +1,36 @@
-import { Image, Text, View, StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { MemoryShortDetails } from '@/types/memory';
+import { memoryDetails } from '@/data/test-data';
 
 const MemoryItem = (props: MemoryShortDetails) => {
+  const router = useRouter();
+
+  const goToDetails = () => {
+    router.push({
+      pathname: '/MemoryDetails',
+      params: { memory: JSON.stringify(memoryDetails) },
+    });
+  };
+
   return (
-    <View style={styles.timelineItem}>
-      <View style={styles.timelineLine} />
-      <View style={styles.content}>
-        <View style={styles.imageContainer}>
-          <Image source={require('@/assets/images/partial-react-logo.png')} style={styles.image} />
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.date}>{props.date}</Text>
-          <Text style={styles.title}>{props.title}</Text>
+    <Pressable onPress={goToDetails}>
+      <View style={styles.timelineItem}>
+        <View style={styles.timelineLine} />
+        <View style={styles.content}>
+          <View style={styles.imageContainer}>
+            <Image
+              source={require('@/assets/images/partial-react-logo.png')}
+              style={styles.image}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.date}>{props.date}</Text>
+            <Text style={styles.title}>{props.title}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

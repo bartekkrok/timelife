@@ -1,4 +1,46 @@
-import { MemoryShortDetails } from '@/types/memory';
+import type { MemoryDetails, MemoryShortDetails } from '@/types/memory';
+
+export const memoryDetails: MemoryDetails = {
+  id: 'a7f29e12-ccf4-46cb-8be6-02f2c13b72ee',
+  title: 'Trip to the Mountains',
+  description:
+    'A beautiful weekend getaway to the Tatra Mountains with friends. We hiked, took photos, and enjoyed nature.',
+  date: '2024-08-12T00:00:00Z',
+  createdAt: '2024-08-13T10:30:00Z',
+  updatedAt: '2024-08-14T15:45:00Z',
+  location: {
+    latitude: 49.2946,
+    longitude: 19.9504,
+    placeName: 'Zakopane, Poland',
+  },
+  media: [
+    {
+      type: 'image',
+      url: 'https://example.com/media/mountain1.jpg',
+      thumbnailUrl: 'https://example.com/media/thumbs/mountain1_thumb.jpg',
+      title: 'Mountain view',
+    },
+    {
+      type: 'video',
+      url: 'https://example.com/media/hike.mp4',
+      thumbnailUrl: 'https://example.com/media/thumbs/hike_thumb.jpg',
+      title: 'Hiking moments',
+    },
+    {
+      type: 'audio',
+      url: 'https://example.com/media/birds.mp3',
+      title: 'Birds singing',
+    },
+    {
+      type: 'document',
+      url: 'https://example.com/media/trip_plan.pdf',
+      title: 'Trip Plan PDF',
+    },
+  ],
+  tags: ['nature', 'hiking', 'friends', 'mountains'],
+  isPrivate: false,
+  sharedWith: ['user_123', 'user_456'],
+};
 
 export const memoryList: readonly MemoryShortDetails[] = [
   {
@@ -7,6 +49,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2024-10-11T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/71.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '8afd3f13-35a1-4fd8-bbd3-283056b40100',
@@ -14,6 +57,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2024-08-24T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/55.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: 'd5489e22-2d94-44c9-8688-73d65f3a5fd6',
@@ -21,6 +65,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2024-08-22T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/11.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '58266da7-1559-4157-8cf9-7234a29e9ffb',
@@ -28,6 +73,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2024-03-29T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/54.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '7f791e21-dff0-4c2b-ba7d-124ef3b3c799',
@@ -35,6 +81,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2023-10-21T00:00:00',
     thumbnailUrl: null,
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '1cfe7ac1-6cf2-4549-a7fe-059105a0b20c',
@@ -42,6 +89,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2023-09-04T00:00:00',
     thumbnailUrl: null,
     isPrivate: true,
+    isFavorite: true,
   },
   {
     id: '1723f10c-583c-4009-bade-e7955a79d076',
@@ -49,6 +97,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2023-08-26T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/81.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '4f619c9c-d7d1-4f32-b749-7d99a2e72ef7',
@@ -56,6 +105,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2023-03-10T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/20.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '6ec70d09-f172-4de3-b737-465912297b82',
@@ -63,6 +113,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2022-12-07T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/65.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '569218d1-54dc-45ef-9e92-484b9d3a37da',
@@ -70,6 +121,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2022-11-02T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/87.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '6709e240-5ac7-4554-b6dc-da16544a0529',
@@ -77,6 +129,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2022-08-28T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/96.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '2332ccb6-a759-46a7-985c-e8026b758e7e',
@@ -84,6 +137,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2022-01-22T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/15.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '8da0f6eb-5d41-46d0-9734-b1878e6e5286',
@@ -91,6 +145,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2021-10-29T00:00:00',
     thumbnailUrl: null,
     isPrivate: true,
+    isFavorite: true,
   },
   {
     id: '03753ea2-aebc-4528-8465-f0332690dc0b',
@@ -98,6 +153,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2021-09-13T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/33.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '875d2db2-a6fa-423e-807f-86d0f3b9307f',
@@ -105,6 +161,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2021-07-21T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/100.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '2a42723b-ddd3-471f-8877-a6902fb0d169',
@@ -112,6 +169,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2021-03-01T00:00:00',
     thumbnailUrl: null,
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '3bf51aa1-6e3a-4ee1-999d-3a0e9f398c19',
@@ -119,6 +177,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2020-11-27T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/91.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '4b89f143-0727-401a-bcdc-dbd20bd26ff6',
@@ -126,6 +185,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2020-08-08T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/87.jpg',
     isPrivate: true,
+    isFavorite: false,
   },
   {
     id: '8731e089-785d-4a52-bda9-7640cbde5655',
@@ -133,6 +193,7 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2020-01-21T00:00:00',
     thumbnailUrl: 'https://example.com/thumbnails/11.jpg',
     isPrivate: false,
+    isFavorite: false,
   },
   {
     id: '5bd518d4-2012-4ac8-a3cf-e7b6453acfc1',
@@ -140,5 +201,6 @@ export const memoryList: readonly MemoryShortDetails[] = [
     date: '2020-01-02T00:00:00',
     thumbnailUrl: null,
     isPrivate: true,
+    isFavorite: false,
   },
 ];

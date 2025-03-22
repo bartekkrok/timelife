@@ -27,4 +27,5 @@ export type MemoryShortDetails = {
   date: string; // Memory date (ISO 8601)
   thumbnailUrl: string | null;
   isPrivate: boolean; // Whether the memory is private
+  isFavorite?: boolean; // Optional flag to mark the memory as favorite
 };

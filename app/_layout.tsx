@@ -35,6 +35,7 @@ function RootNavigation() {
       {user ? (
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="MemoryDetails" />
           <Stack.Screen name="+not-found" />
         </Stack>
       ) : (
