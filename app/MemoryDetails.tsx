@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Linking } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
 import type { MemoryDetails } from '@/types/memory';
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 import MapView, { Marker } from 'react-native-maps';
+import { useLocalSearchParams } from 'expo-router';
+import { Edge, SafeAreaView } from 'react-native-safe-area-context';
 
 type RouteParams = {
   MemoryDetails: {
@@ -12,105 +13,124 @@ type RouteParams = {
 };
 
 export default function MemoryDetails() {
-  const route = useRoute<RouteProp<RouteParams, 'MemoryDetails'>>();
-  const { memory } = route.params;
+  const params = useLocalSearchParams();
+  const memory = JSON.parse(params.memory as string) as MemoryDetails;
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Title & Date */}
-      <Text style={styles.title}>{memory.title}</Text>
-      {/*<Text style={styles.date}>{format(new Date(memory.date), 'MMMM d, yyyy')}</Text>*/}
-
-      {/* Description */}
-      {memory.description && <Text style={styles.description}>{memory.description}</Text>}
-
-      {/* Location */}
-      {memory.location && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Location</Text>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: memory.location.latitude,
-              longitude: memory.location.longitude,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
-            }}
-          >
-            <Marker
-              coordinate={{
-                latitude: memory.location.latitude,
-                longitude: memory.location.longitude,
-              }}
-              title={memory.location.placeName || 'Memory Location'}
-            />
-          </MapView>
+    <SafeAreaView style={{ flex: 1 }} edges={['bottom'] as Edge[]}>
+      <ScrollView contentContainerStyle={styles.container}>
+        {/* Title & Date */}
+        <View style={[styles.paddingHorizontal, { marginTop: 16 }]}>
+          <Text style={styles.title}>{memory.title}</Text>
+          <Text style={styles.date}>{format(new Date(memory.date), 'MMMM d, yyyy')}</Text>
         </View>
-      )}
 
-      {/* Media */}
-      {memory.media && memory.media.length > 0 && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Media</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {memory.media.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                style={styles.mediaItem}
-                onPress={() => Linking.openURL(item.url)}
+        {/* Description */}
+        <View style={styles.paddingHorizontal}>
+          {memory.description && <Text style={styles.description}>{memory.description}</Text>}
+        </View>
+
+        {/* Media */}
+        {memory.media && memory.media.length > 0 && (
+          <View style={styles.section}>
+            <View style={styles.paddingHorizontal}>
+              <Text style={styles.sectionTitle}>Media</Text>
+            </View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {memory.media.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.mediaItem}
+                  onPress={() => Linking.openURL(item.url)}
+                >
+                  {item.thumbnailUrl && item.type === 'image' ? (
+                    <Image source={{ uri: item.thumbnailUrl }} style={styles.thumbnail} />
+                  ) : (
+                    <View style={styles.placeholder}>
+                      <Text style={styles.placeholderText}>{item.type.toUpperCase()}</Text>
+                    </View>
+                  )}
+                  {item.title && <Text style={styles.mediaTitle}>{item.title}</Text>}
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        )}
+
+        {/* Location */}
+        {memory.location && (
+          <View style={styles.paddingHorizontal}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Location</Text>
+              <MapView
+                style={styles.map}
+                initialRegion={{
+                  latitude: memory.location.latitude,
+                  longitude: memory.location.longitude,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+                }}
               >
-                {item.thumbnailUrl && item.type === 'image' ? (
-                  <Image source={{ uri: item.thumbnailUrl }} style={styles.thumbnail} />
-                ) : (
-                  <View style={styles.placeholder}>
-                    <Text style={styles.placeholderText}>{item.type.toUpperCase()}</Text>
-                  </View>
-                )}
-                {item.title && <Text style={styles.mediaTitle}>{item.title}</Text>}
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-      )}
+                <Marker
+                  coordinate={{
+                    latitude: memory.location.latitude,
+                    longitude: memory.location.longitude,
+                  }}
+                  title={memory.location.placeName || 'Memory Location'}
+                />
+              </MapView>
+            </View>
+          </View>
+        )}
 
-      {/* Tags */}
-      {memory.tags && memory.tags.length > 0 && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Tags</Text>
-          <View style={styles.tagList}>
-            {memory.tags.map((tag) => (
-              <View key={tag} style={styles.tag}>
-                <Text style={styles.tagText}>#{tag}</Text>
+        {/* Tags */}
+        {memory.tags && memory.tags.length > 0 && (
+          <View style={styles.paddingHorizontal}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Tags</Text>
+              <View style={styles.tagList}>
+                {memory.tags.map((tag) => (
+                  <View key={tag} style={styles.tag}>
+                    <Text style={styles.tagText}>#{tag}</Text>
+                  </View>
+                ))}
               </View>
-            ))}
+            </View>
+          </View>
+        )}
+
+        {/* Privacy */}
+
+        <View style={styles.paddingHorizontal}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Privacy</Text>
+            <Text>{memory.isPrivate ? 'Private' : 'Public'}</Text>
           </View>
         </View>
-      )}
 
-      {/* Privacy */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Privacy</Text>
-        <Text>{memory.isPrivate ? 'Private' : 'Public'}</Text>
-      </View>
-
-      {/* Shared with */}
-      {memory.sharedWith && memory.sharedWith.length > 0 && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Shared With</Text>
-          {memory.sharedWith.map((userId) => (
-            <Text key={userId} style={styles.sharedUser}>
-              👤 {userId}
-            </Text>
-          ))}
-        </View>
-      )}
-    </ScrollView>
+        {/* Shared with */}
+        {memory.sharedWith && memory.sharedWith.length > 0 && (
+          <View style={styles.paddingHorizontal}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Shared With</Text>
+              {memory.sharedWith.map((userId) => (
+                <Text key={userId} style={styles.sharedUser}>
+                  👤 {userId}
+                </Text>
+              ))}
+            </View>
+          </View>
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  paddingHorizontal: {
+    paddingHorizontal: 16,
+  },
   container: {
-    padding: 16,
     gap: 12,
   },
   title: {
